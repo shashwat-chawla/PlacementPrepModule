@@ -1,0 +1,35 @@
+  class Solution {
+
+public:
+
+    int lengthOfLongestSubstring(string s) {
+
+        int n=s.size(),i=0,ans=0,j=0;
+
+        if(n==1)return 1;
+
+        vector<int>vis(256,0);    // inorder to know whether we have already taken that alphabet or not
+
+        while(i<n){
+
+            while(j<n&&vis[s[j]]==0){// if eg s="aaaa" then j will iterate over rest and breaking the loop 
+
+                vis[s[j]]=1;
+
+                ans=max(ans,j-i+1);
+
+                j++;
+
+            }
+
+            vis[s[i]]=0;//inorder to unmark 
+
+            i++;
+
+        }
+
+        return ans;
+
+    }
+
+};

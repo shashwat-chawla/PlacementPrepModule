@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& p) {
+         int mi = p[0],  pr = 0, mp = 0;
+    for (int i = 1; i < p.size(); i++)
+    {
+        mi = min(p[i], mi);
+        
+        pr=p[i]-mi;
+        mp=max(mp,pr);
+    }
+    return mp;
+        
+        
+    }
+};

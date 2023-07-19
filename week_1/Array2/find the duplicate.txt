@@ -1,0 +1,32 @@
+class Solution {
+    public int findDuplicate(int[] arr) {
+          int n=arr.length;
+        int i=0;
+        while(i<n)
+        {
+          int correct=arr[i]-1;
+          if(arr[i]!=arr[correct])
+          {
+              int temp=arr[i];
+              arr[i]=arr[correct];
+              arr[correct]=temp;
+          }
+          else
+          {
+              i++;
+          }
+
+
+        }
+        i=0;
+        //  ArrayList<Integer> ans=new ArrayList();
+          for(;i<n;i++)
+          {
+              if(arr[i]!=i+1)
+              {
+                 return arr[i];
+              }
+          }
+          return i+1;
+    }
+}

@@ -1,0 +1,23 @@
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        //Things to keep in mind:
+		//To rotate matrix by 90 degree clockwise means to take a transpose and reverse each row
+		//It also means rotating the matrix 90 degree anti-clockwise 3 times
+		//You got it right! To rotate matrix by 90 degree anti-clockwise means to take transpose and reverse each columns
+		
+		
+		//Transpose of the matrix 
+        for(int i=0; i<matrix.size(); i++) {
+            for(int j=i+1; j<matrix.size(); j++) {
+                swap(matrix[i][j],matrix[j][i]);
+            }
+        }
+        
+		//Reversing all the rows
+        for(int i=0; i<matrix.size(); i++) {
+            reverse(matrix[i].begin(),matrix[i].end());
+        }
+        
+    }
+};

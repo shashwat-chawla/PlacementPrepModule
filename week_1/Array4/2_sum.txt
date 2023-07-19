@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int,int> map;
+        vector<int> ans;//to store answer
+        for(int i=0;i<nums.size();i++)
+        {
+            if(map.find(target-nums[i])!=map.end())
+            {
+                ans.push_back(map[target-nums[i]]);//to put the index of remaining element
+                ans.push_back(i);//to put the index of current index
+                return ans;//since we have given that only one such pair will exixt so returning ans if found
+
+            }
+            map[nums[i]]=i;//if not found then storing the value and the index in the hash
+        }
+        return ans;
+        
+        
+    }
+};
