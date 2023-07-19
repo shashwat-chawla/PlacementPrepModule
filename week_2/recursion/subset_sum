@@ -1,0 +1,26 @@
+
+
+//User function Template for Java//User function Template for Java
+class Solution{
+    ArrayList<Integer>ans=new ArrayList();
+    void ss(ArrayList<Integer>arr,int n,int i,int sum)
+    {
+        if(i==n)
+        {
+            ans.add(sum);
+            return;
+        }
+        ss(arr,n,i+1,sum+arr.get(i));
+        //sum=sum-arr[i];
+        ss(arr,n,i+1,sum);
+    }
+    
+    ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int n){
+        // code here
+       
+        
+         ss(arr,n,0,0);
+         Collections.sort(ans);
+         return ans;
+    }
+}

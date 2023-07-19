@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+
+bool isPoss(vector<int> &stalls, int k , int mid){
+    int cows=1,inPos=stalls[0],maxDist=0;
+
+    for(int i=1;i<stalls.size();i++){
+        if(stalls[i]-inPos>=mid){
+            cows++;
+            inPos=stalls[i];
+        }
+    }
+
+    if(cows>=k){
+        return true;
+    }
+    return false;
+}
+
+
+
+int aggressiveCows(vector<int> &stalls, int k)
+{
+    //    Write your code here.
+    sort(stalls.begin(),stalls.end());
+    int i=0,j=*max_element(stalls.begin(),stalls.end());
+    int ans=INT_MIN;
+
+   
+
+    while(i<=j){
+        int mid = (i+j)/2;
+
+        if(isPoss(stalls,k,mid)){
+            ans = max(ans , mid);
+            i=mid+1;
+            
+        }
+        else{
+            j=mid-1;
+            
+        }
+    }
+    return ans;
+}

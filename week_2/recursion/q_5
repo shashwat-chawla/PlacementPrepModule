@@ -1,0 +1,32 @@
+class Solution {
+public:
+     vector<vector<string>>ans;
+     void part(string s,vector<string>&t, int i)
+     {
+         if(i==s.size())
+         {
+             ans.push_back(t);
+             return;
+         }
+         for( int j=i;j<s.size();j++)
+         {
+            //  string s1=s;
+            //  reverse(s.begin(),s.end());
+            string s1=s.substr(i,j-i+1);
+            string m = s1;
+            reverse(m.begin(),m.end());
+             if(s1==m)
+             {
+                 t.push_back(s.substr(i,j-i+1));
+                 part(s,t,j+1);
+                 t.pop_back();
+
+             }
+         }
+     }
+    vector<vector<string>> partition(string s) {
+        vector<string>t;
+        part(s,t,0);
+        return ans;
+    }
+};

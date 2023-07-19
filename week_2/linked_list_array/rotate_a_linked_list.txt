@@ -1,0 +1,120 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int s=0;
+    int len(ListNode* l)
+    { 
+        while(l!=NULL)
+        {
+            s++;
+            l=l->next;
+        }
+        return s;
+    }
+    
+    ListNode* rotateRight(ListNode* head, int k) {
+        ListNode* temp=head;
+        if(head==NULL)
+        {
+            return head;
+        }
+        if(k==0)
+        {
+            return head;
+        }
+        int s=len(temp);
+        int t=0;
+         temp=head;
+        while(t!=(k)%s)
+        {
+            temp=temp->next;
+            t++;
+        }
+        temp=temp->next;
+        t=0;
+        ListNode* dummy=new ListNode();
+        ListNode* temp1=dummy;
+        while(t!=s)
+        {
+            if(temp!=NULL)
+            {
+            ListNode* node=new ListNode(temp->val);
+            temp1->next=node;
+            temp1=temp1->next;
+                temp=temp->next;
+            }
+            else
+            {
+                temp=head;
+                 ListNode* node=new ListNode(temp->val);
+            temp1->next=node;
+            temp1=temp1->next;
+                    temp=temp->next;
+            }
+            t++;
+        }
+        
+        return dummy->next;
+    }
+};
+// If this help plz upvote :)
+
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        
+        // Base Case 
+        if(head == NULL || left == right){
+            return head;
+        }
+        
+        // Creating a Dummy node so that we don't need to take care of additional base cases
+        ListNode* dummy = new ListNode();
+        dummy->next = head;
+        
+        // making previos and current pointer
+        ListNode* Lftprevious = dummy;
+        ListNode* current = head;
+        
+        // Step 1 : 
+        // We want Previous pointer to point one before the left pointer and current pointer point at left
+        for(int i=0;i<left-1;i++){
+            current = current->next;
+            Lftprevious = Lftprevious->next;
+        }
+        
+        // Step 2 : 
+        // reversing the linked list
+        ListNode *previous = NULL;
+        for(int i=0;i<(right-left+1);i++){
+            ListNode* temp = current->next;
+            current->next = previous;
+            previous = current;
+            current = temp;
+        }
+        
+        
+        // Step 3 :
+        // Rejoining links
+        ListNode* rightlink = Lftprevious->next;
+        Lftprevious->next = previous;
+        rightlink->next = current;
+        
+        // Answer will always be dummy->next
+        head = dummy->next;
+        delete dummy;
+        
+        return head;
+    }
+};
+
+// If this help plz upvote :)

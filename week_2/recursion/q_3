@@ -1,0 +1,25 @@
+class Solution {
+public:
+     void fc(vector<int>&arr,int t,int i,int sum,vector<vector<int>>&ans,vector<int>temp)
+     {
+         if(i>=arr.size()||sum>=t)
+         {
+             if(sum==t)
+             ans.push_back(temp);
+             return;
+         }
+         
+         temp.push_back(arr[i]);
+         fc(arr,t,i,sum+arr[i],ans,temp);
+         temp.pop_back();
+         fc(arr,t,i+1,sum,ans,temp);
+        
+
+     } 
+    vector<vector<int>> combinationSum(vector<int>& arr, int t) {
+        vector<vector<int>>ans;
+        vector<int>temp;
+        fc(arr,t,0,0,ans,temp);
+       return ans;
+    }
+};

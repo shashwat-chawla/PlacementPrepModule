@@ -1,0 +1,21 @@
+public static int maxMeetings(int start[], int end[], int n)
+    {
+        //making and sorting the list
+
+        List<Pair> lst=new ArrayList<>();
+        int i=0;
+        while(i<n){
+            lst.add(new Pair(start[i],end[i]));
+            i++;
+        }Collections.sort(lst,(a,b)->a.second-b.second);
+
+        int count=1;
+
+        for(int j=1,k=0;j<n&&k<n;j++){
+            if(lst.get(k).second<lst.get(j).first) {
+              k=j;
+              count++;
+            }
+        }
+        return count;
+    }

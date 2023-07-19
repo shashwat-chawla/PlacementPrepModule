@@ -1,0 +1,29 @@
+class Solution {
+public:
+    void per(vector<int>&nums,vector<int>&ds,vector<int>&map,vector<vector<int>>&ans)
+    {
+       if(ds.size()==nums.size())
+       {
+           ans.push_back(ds);
+           return;
+       }
+        for(int i=0;i<nums.size();i++)
+        {
+            if(!map[i])
+            {
+                map[i]=1;
+                ds.push_back(nums[i]);
+                per(nums,ds,map,ans);
+                map[i]=0;
+                ds.pop_back();
+            }
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<int>map(nums.size(),0);
+        vector<int>ds;
+        vector<vector<int>> ans;
+        per(nums,ds,map,ans);
+        return ans;
+    }
+};
